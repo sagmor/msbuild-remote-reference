@@ -1,0 +1,30 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="RestoreRemoteReferences" 
+        BeforeTargets="PrepareForBuild"
+        Inputs="@(RemoteReference)"
+        Outputs="@(RemoteReference -> '$(BaseRemoteReferencePath)%(Identity)')" >
+
+        <PropertyGroup>
+            <_RemoteReferenceDownloadFolder>$(BaseRemoteReferencePath)%(RemoteReference.Identity)</_RemoteReferenceDownloadFolder>
+        </PropertyGroup>
+
+        <Message Text="Downloading @(RemoteReference->'%(Identity) from %(Uri)')" />
+        <DownloadFile
+            SourceUrl="%(RemoteReference.Uri)"
+            DestinationFolder="$(_RemoteReferenceDownloadFolder)">
+            <Output TaskParameter="DownloadedFile" PropertyName="_DownloadedRemoteReference" />
+        </DownloadFile>
+
+        <VerifyFileHash File="$(_DownloadedRemoteReference)"
+            Hash="%(RemoteReference.Hash)"
+            Algorithm="%(RemoteReference.Algorithm)"
+            Condition="'%(RemoteReference.VerifyFileHash)'=='true'" />
+
+        <Unzip
+            SourceFiles="$(_DownloadedRemoteReference)"
+            DestinationFolder="$(_RemoteReferenceDownloadFolder)"
+            OverwriteReadOnlyFiles="true"
+            Condition="'%(RemoteReference.Unzip)'=='true'"
+        />
+    </Target>
+</Project>

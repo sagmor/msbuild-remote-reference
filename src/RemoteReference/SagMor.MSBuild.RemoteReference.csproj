@@ -1,0 +1,42 @@
+<!-- <Project Sdk="Microsoft.Build.NoTargets">
+    <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <PackageType>MSBuildSdk</PackageType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="Sdk\*.*">
+            <Pack>true</Pack>
+        </None>
+    </ItemGroup>
+</Project> -->
+
+<Project Sdk="Microsoft.Build.NoTargets">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+
+    <Authors>SagMor</Authors>
+    <Company>SagMor</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/sagmor/msbuild-remote-reference</PackageProjectUrl>
+    <Description>Register the RemoteReference property to fetch dependencies from a URL</Description>
+    <PackageTags>MSBuild MSBuildSdk RemoteReference</PackageTags>
+    <PackageType>MSBuildSdk</PackageType>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(IsPackable)' == 'true'">
+    <None Include="Sdk\**"
+          Pack="true"
+          PackagePath="Sdk\" />
+    <None Include="..\..\LICENSE"
+          Pack="true"
+          PackagePath="\" />
+    <None Include="..\..\README.md"
+          Pack="true"
+          PackagePath="\" />
+</ItemGroup>
+</Project>

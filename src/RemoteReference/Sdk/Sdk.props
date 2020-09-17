@@ -1,0 +1,15 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <BaseRemoteReferencePath>$(BaseIntermediateOutputPath)$(Configuration)\downloads\</BaseRemoteReferencePath>
+    </PropertyGroup>
+
+    <ItemDefinitionGroup>
+        <RemoteReference>
+            <Uri></Uri>
+            <Hash></Hash>
+            <Algorithm>SHA256</Algorithm>
+            <Unzip>false</Unzip>
+            <VerifyFileHash>true</VerifyFileHash>
+        </RemoteReference>
+    </ItemDefinitionGroup>
+</Project>
