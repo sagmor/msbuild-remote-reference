@@ -4,7 +4,7 @@ This is a MSBuild Sdk that allows projects to declare references to remote asset
 ### Usage
 On your MSBuild project insert:
 ```xml
-    <Sdk Include="SagMor.MSBuild.RemoteReference" Version="0.1.1" />
+    <Sdk Name="SagMor.MSBuild.RemoteReference" Version="0.1.3" />
 
     <ItemGroup>
         <RemoteReference Include="<Identifier>"
@@ -19,7 +19,7 @@ And MSBuild will download the file to the `$(BaseRemoteReferencePath)<Identifier
 ### Example
 Downloading and copying helm.exe
 ```xml
-    <Sdk Include="SagMor.MSBuild.RemoteReference" Version="0.1.1" />
+    <Sdk Name="SagMor.MSBuild.RemoteReference" Version="0.1.3" />
     <ItemGroup>
         <RemoteReference Include="Helm"
             Uri="https://get.helm.sh/helm-v3.3.1-windows-amd64.zip"
